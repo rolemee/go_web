@@ -34,7 +34,9 @@ func connect(conf *ConfigInfo) *meilisearch.Client{
 }
 
 func Search(keywork string,index string) []interface{}{
-	res , _ :=client.Index(index).Search(keywork, &meilisearch.SearchRequest{})
+	res , _ :=client.Index(index).Search(keywork, &meilisearch.SearchRequest{
+		AttributesToRetrieve:[]string{"id","name","describe"},
+	})
 	return res.Hits
 }
 
