@@ -1,9 +1,10 @@
 package api
 
 import (
-	"github.com/gin-gonic/gin"
-	"outsourcing/module"
 	// "fmt"
+	"outsourcing/module"
+	"github.com/Lofanmi/pinyin-golang/pinyin"
+	"github.com/gin-gonic/gin"
 )
 
 func Insert(c *gin.Context){
@@ -14,12 +15,15 @@ func Insert(c *gin.Context){
 		return 
 	}
 	c.BindJSON(&json)
-	res := module.Insert(json,index)
-	_, ok := json["id"]
-	if index == "" ||  len(json) == 0 || !ok{
+	_, ok1 := json["id"]
+	_, ok2 := json["name"]
+	if index == "" ||  len(json) == 0 || !ok1 || !ok2{
 		c.JSON(200, Response{PARAMETER_MISSING, myjson{} , "参数缺失"})
 		return 
 	}
+	dict := pinyin.NewDict()
+	json["name_py"] = dict.Convert(json["name"].(string)," ").None()
+	res := module.Insert(json,index)
 
 	if res == "enqueued"{
 		c.JSON(200, Response{SUCCESS, myjson{}, "添加成功"})

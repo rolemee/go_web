@@ -4,7 +4,6 @@ import (
 	"outsourcing/api"
 	// "fmt"
 	// "github.com/meilisearch/meilisearch-go"
-	// "github.com/meilisearch/meilisearch-go"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +16,6 @@ func main() {
 	search.GET("/all", api.All)
 	search.POST("/insert", api.Insert)
   }
-
   r.Run(":8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 
 }
