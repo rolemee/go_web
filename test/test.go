@@ -29,6 +29,6 @@ func Test(c *gin.Context){
 		"code": 10000,
 		"data": gin.H{"data":module.Search(keyword,index)},
 		"message": "查询成功",
-	})
+	}	// "encoding/json")
 	
 }

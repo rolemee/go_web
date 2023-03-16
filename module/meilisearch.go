@@ -1,7 +1,6 @@
 package module
 
 import (
-	"fmt"
 	"gopkg.in/yaml.v2"
 	"github.com/meilisearch/meilisearch-go"
 	"io/ioutil"
@@ -12,6 +11,8 @@ type ConfigInfo struct{
 	Ip string `yaml:"ip"`
 }
 
+var conf  ConfigInfo
+var client = connect(conf.Readconfig())
 
 func (c *ConfigInfo) Readconfig() *ConfigInfo {
 	yamlConfig, err := ioutil.ReadFile("config/meilisearch.yaml")
@@ -33,9 +34,14 @@ func connect(conf *ConfigInfo) *meilisearch.Client{
 }
 
 func Search(keywork string,index string) []interface{}{
-	var conf  ConfigInfo
-	client := connect(conf.Readconfig())
-	fmt.Println(index,keywork)
 	res , _ :=client.Index(index).Search(keywork, &meilisearch.SearchRequest{})
 	return res.Hits
+}
+
+func Insert(myjson map[string]interface{}, index string) string{
+	res , err := client.Index(index).AddDocuments(myjson)
+	if err != nil{
+		panic(err)
+	}
+	return string(res.Status)
 }
