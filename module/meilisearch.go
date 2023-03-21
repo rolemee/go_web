@@ -47,3 +47,12 @@ func Insert(myjson map[string]interface{}, index string) string{
 	}
 	return string(res.Status)
 }
+
+func Delete(id string, index string) string{
+	res ,err := client.Index(index).DeleteDocument(id)
+	if err !=nil{
+		panic(err)
+	}
+	
+	return string(res.Status)
+}

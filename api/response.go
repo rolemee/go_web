@@ -5,6 +5,7 @@ const PERMISSIONS_DENIED = 401
 const NOT_FOUND = 404
 const PARAMETER_MISSING = 9992
 const PARAMETER_ERROR = 9995
+const SERVER_ERROR = 9994
 
 var WhiteList = []string{"nfts","users"}
 

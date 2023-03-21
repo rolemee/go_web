@@ -42,5 +42,7 @@ func Insert(c *gin.Context){
 	res := module.Insert(json,index)
 	if res == "enqueued"{
 		c.JSON(200, Response{SUCCESS, myjson{}, "添加成功"})
+	}else{
+		c.JSON(200, Response{SERVER_ERROR, myjson{} , "服务器错误"})
 	}
 }
