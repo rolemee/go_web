@@ -16,19 +16,4 @@ type DataStruct struct{
 
 func Test(c *gin.Context){
 
-	keyword :=c.Query("keyword")
-	index := c.DefaultQuery("index","nfts")
-	if keyword == "" || index == ""{
-		c.JSON(200, gin.H{
-			"code": 9992,
-			"data": gin.H{},
-			"message": "参数缺失",
-		})
-	}
-	c.JSON(200, gin.H{
-		"code": 10000,
-		"data": gin.H{"data":module.Search(keyword,index)},
-		"message": "查询成功",
-	}	// "encoding/json")
-	
 }
