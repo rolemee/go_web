@@ -16,6 +16,11 @@ func main() {
 	search.GET("/all", api.All)
 	search.POST("/insert", api.Insert)
 	search.DELETE("/delete",api.Delete)
+	
+  }
+  webco := r.Group("/api/websocket")
+  {
+    webco.GET("/test",api.Queryy)
   }
   r.Run(":8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 

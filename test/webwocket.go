@@ -2,9 +2,7 @@ package test
 import (
 
 	"fmt"
-	// "outsourcing/api"
-	// "fmt"
-	// "github.com/meilisearch/meilisearch-go"
+
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"github.com/gorilla/websocket"
@@ -27,8 +25,6 @@ func main() {
 		fmt.Println(err)
 		return 
 	}
-	fmt.Println(ctx.Writer)
-	fmt.Println(ctx.Request)
 	defer ws.Close()
 	for {
 		//Read Message from client

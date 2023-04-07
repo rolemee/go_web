@@ -1,0 +1,5 @@
+port: 5432 
+ip: 47.99.75.203
+user: postgres
+password: C2gGLYdua3KT8J
+dbname: postgres

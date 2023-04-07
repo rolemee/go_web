@@ -9,13 +9,16 @@ import (
 type ConfigInfo struct{
 	Port string `yaml:"port"`
 	Ip string `yaml:"ip"`
+	User string `yaml:"user"`
+	Password string `yaml:"password"`
+	Dbname string`yaml:"dbname"` 
 }
 
 var conf  ConfigInfo
-var client = connect(conf.Readconfig())
+var client = connect(conf.Readconfig("meilisearch.yaml"))
 
-func (c *ConfigInfo) Readconfig() *ConfigInfo {
-	yamlConfig, err := ioutil.ReadFile("config/meilisearch.yaml")
+func (c *ConfigInfo) Readconfig(filename string) *ConfigInfo {
+	yamlConfig, err := ioutil.ReadFile("config/"+filename)
 	if err !=nil{
 		panic(err)
 	}
